@@ -1,9 +1,9 @@
 # TIL
 
 ```
-files            : 5
+files            : 4
 
-derectories      : 11
+derectories      : 8
 
 ```
 
@@ -12,15 +12,6 @@ derectories      : 11
 - 위 repository에 기록된 내용은 기록된 내용을 이해하고 응용할 수 있도록 합니다.
 
 .
-┗━　[**node_modules**](./node_modules)</br>
-┃　　　┗━　[**husky**](./node_modules/husky)</br>
-┃　　　　　　　┗━　[**LICENSE**](./node_modules/husky/LICENSE)</br>
-┃　　　　　　　┗━　[README](./node_modules/husky/README.md)</br>
-┃　　　　　　　┗━　[**bin.js**](./node_modules/husky/bin.js)</br>
-┃　　　　　　　┗━　[**husky**](./node_modules/husky/husky)</br>
-┃　　　　　　　┗━　[**index.d.ts**](./node_modules/husky/index.d.ts)</br>
-┃　　　　　　　┗━　[**index.js**](./node_modules/husky/index.js)</br>
-┃　　　　　　　┗━　[**package.json**](./node_modules/husky/package.json)</br>
 ┗━　[**서버**](./서버)</br>
 ┃　　　┗━　[이건　한번　해볼까?](./서버/이건　한번　해볼까?.md)</br>
 ┗━　[README](./README.md)</br>
