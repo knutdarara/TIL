@@ -1,7 +1,9 @@
 # TIL
 
 ```
-files            : derectories      : ```
+files            : 
+derectories      : 
+```
 
 - 학습한 내용을 md 파일로 정리합니다. 
 - 머릿속에 정리 되지 않는 내용을 글과 그림으로 구체화 합니다.
