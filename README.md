@@ -2,9 +2,7 @@
 
 ```
 files            : 4
-
 derectories      : 8
-
 ```
 
 - 학습한 내용을 md 파일로 정리합니다. 
