@@ -3,6 +3,9 @@ export LC_ALL=en_US.UTF-8
 export LANG="UTF-8"
 filepath="$HOME/obsidian/TIL"
 
+# GitHub repository의 URL 기본 경로
+github_base_url="https://github.com/username/repository/blob/master"
+
 Y=$(date +%Y)
 M=$(date +%m)
 D=$(date +%d)
@@ -12,6 +15,12 @@ Ymd=$Y-$M-$D
 function url_encode() {
   local string="$1"
   python3 -c "import urllib.parse; print(urllib.parse.quote('$string', safe='/'))"
+}
+
+# GitHub URL로 변환
+function convert_to_github_url() {
+  local path="$1"
+  echo "$github_base_url/$(url_encode "$path")"
 }
 
 function generate_project_tree() {
@@ -27,10 +36,10 @@ function generate_project_tree() {
     gsed -e 's/━━━/━/g' |
     gsed -e 's/[ ]/　/g' |
     while read line; do
-      # URL 인코딩을 경로에 적용
+      # 경로를 GitHub URL로 변환
       if [[ "$line" =~ \(\./.*\) ]]; then
-        # 경로 인코딩 적용
-        path=$(echo "$line" | sed -E 's!\(\./([^)]*)\)!\(\./'$(url_encode \1)'\)!g')
+        # 경로를 GitHub URL로 변환
+        path=$(echo "$line" | sed -E 's!\(\./([^)]*)\)!\(\./'$(convert_to_github_url \1)'\)!g')
         echo "$path"
       else
         echo "$line"
