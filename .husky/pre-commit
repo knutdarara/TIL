@@ -11,7 +11,7 @@ Ymd=$Y-$M-$D
 # URL 인코딩 함수 (Python을 사용)
 function url_encode() {
   local string="$1"
-  python3 -c "import urllib.parse; print(urllib.parse.quote('$string'))"
+  python3 -c "import urllib.parse; print(urllib.parse.quote('$string', safe='/'))"
 }
 
 function generate_project_tree() {
@@ -27,9 +27,13 @@ function generate_project_tree() {
     gsed -e 's/━━━/━/g' |
     gsed -e 's/[ ]/　/g' |
     while read line; do
-      # 각 경로에 대해 URL 인코딩
-      encoded_line=$(url_encode "$line")
-      echo "$encoded_line"
+      # 경로에 대해 URL 인코딩을 적용
+      if [[ "$line" =~ \.\/.* ]]; then
+        encoded_line=$(url_encode "$line")
+        echo "$encoded_line"
+      else
+        echo "$line"
+      fi
     done
 }
 
