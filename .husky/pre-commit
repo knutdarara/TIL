@@ -28,10 +28,10 @@ function generate_project_tree() {
     gsed -e 's/[ ]/　/g' |
     while read line; do
       # 경로에 대해 URL 인코딩을 적용
-      if [[ "$line" =~ \(\.\/.*\) ]]; then
+      if [[ "$line" =~ \(\./.*\) ]]; then
         # 경로 부분만 URL 인코딩
-        encoded_line=$(echo "$line" | sed -E 's!\(\./([^\)]+)\)!\(\./$(url_encode \1)\)!g')
-        echo "$encoded_line"
+        encoded_path=$(echo "$line" | sed -E 's!\(\./([^)]*)\)!\(\./'$(url_encode \1)'\)!g')
+        echo "$encoded_path"
       else
         echo "$line"
       fi
