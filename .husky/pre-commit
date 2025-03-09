@@ -8,20 +8,6 @@ M=$(date +%m)
 D=$(date +%d)
 Ymd=$Y-$M-$D
 
-# URL 인코딩 함수 (Python 사용)
-function url_encode() {
-  local string="$1"
-  python3 -c "import urllib.parse; print(urllib.parse.quote('$string', safe='/'))"
-}
-
-# 상대 경로를 GitHub URL로 변환 (URL 부분은 생략하고 상대경로만 변환)
-function convert_to_github_url() {
-  local path="$1"
-  # 파일 경로에서 base 디렉토리 제거
-  local relative_path=$(echo "$path" | sed "s|$filepath/||")
-  echo "$relative_path"
-}
-
 function generate_project_tree() {
   tree . -I '+*' -f --dirsfirst --noreport -I '~' --charset ascii |
     gsed -e 's/[|]-\+/┗━/g' |
@@ -33,16 +19,7 @@ function generate_project_tree() {
     gsed -e "s=$filepath/=./=g" |
     gsed -e "s=$filepath=./TIL</br>=g" |
     gsed -e 's/━━━/━/g' |
-    gsed -e 's/[ ]/　/g' |
-    while read line; do
-      # 경로가 .로 시작하는 부분을 상대 경로로 변환
-      if [[ "$line" =~ \(\./.*\) ]]; then
-        path=$(echo "$line" | sed -E 's!\(\./([^)]*)\)!\(\./'$(convert_to_github_url \1)'\)!g')
-        echo "$path"
-      else
-        echo "$line"
-      fi
-    done
+    gsed -e 's/[ ]/　/g'
 }
 
 function generate_project_file_count() {
