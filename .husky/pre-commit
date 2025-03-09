@@ -8,11 +8,10 @@ M=$(date +%m)
 D=$(date +%d)
 Ymd=$Y-$M-$D
 
-# URL 인코딩 함수 (공백과 특수문자 처리)
+# URL 인코딩 함수 (Python을 사용)
 function url_encode() {
   local string="$1"
-  # 공백, 한글, 특수문자 인코딩
-  echo "$string" | jq -sRr @uri
+  python3 -c "import urllib.parse; print(urllib.parse.quote('$string'))"
 }
 
 function generate_project_tree() {
