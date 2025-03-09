@@ -1,3 +1,9 @@
+# URL 인코딩 함수 (동적 처리)
+url_encode() {
+    # URL 인코딩을 Perl로 처리
+    echo -n "$1" | perl -MURI::Escape -ne 'print uri_escape($_),"\n"'
+}
+
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export LANG="UTF-8"
@@ -19,7 +25,8 @@ function generate_project_tree() {
     gsed -e "s=$filepath/=./=g" |
     gsed -e "s=$filepath=./TIL</br>=g" |
     gsed -e 's/━━━/━/g' |
-    gsed -e 's/[ ]/　/g'
+    gsed -e 's/[ ]/　/g' |
+    gsed -e 's/\(\[.*\](\)\(.*\))$/\1$(url_encode \2))/g'
 }
 
 function generate_project_file_count() {
