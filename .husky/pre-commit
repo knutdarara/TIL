@@ -3,7 +3,7 @@ export LC_ALL=en_US.UTF-8
 export LANG="UTF-8"
 filepath="$HOME/obsidian/TIL"
 
-# GitHub repository의 URL 기본 경로
+# GitHub repository URL - 저장소의 실제 URL을 여기에 입력하세요.
 github_base_url="https://github.com/username/repository/blob/master"
 
 Y=$(date +%Y)
