@@ -26,7 +26,7 @@ function generate_project_tree() {
     gsed -e "s=$filepath=./TIL</br>=g" |
     gsed -e 's/━━━/━/g' |
     gsed -e 's/[ ]/　/g' |
-    gsed -e 's/\(\[.*\](\)\(.*\))$/\1$(url_encode \2))/g'
+    gsed -e 's/\(\[.*\](\)\(.*\))$/\1$(url_encode \2))/g'  # URL 인코딩
 }
 
 function generate_project_file_count() {
